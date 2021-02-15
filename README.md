@@ -1,7 +1,7 @@
 #  Creating xaringan slides using the useR! theme
 
 
-Welcome to useR, in this repository you will find a template that shows the use of the "useR" xaringan theme. 
+Welcome to useR! In this repository you will find a template that shows the use of the "useR" xaringan theme. 
 
 ## Installation 
 
@@ -16,13 +16,13 @@ remotes::install_github("yihui/xaringan")
 
 ## Creating a presentation
 
-Use the template.Rmd file with the 'useR' and 'useR-fonts' theme to start writing your conference presentation. 
+Use the file template.Rmd that implements the 'useR' and 'useR-fonts' themes to start writing your conference presentation. 
 
 Alternatively, use File > New file > Rmarkdown > From template > Ninja Presentation 
 to start editing a new xaringan presentation. 
 
 
-Add css: ["useR", "useR-fonts"] in the YAML header to specify that you want to use the useR and useR-fonts in your presentation.
+Add css: ["useR", "useR-fonts"] in the YAML header to specify that you want to use the 'useR' and 'useR-fonts' themes in your presentation.
 
 
 ## Rendering your presentation
@@ -43,7 +43,7 @@ Here are some captions of how your presentation would looks like:
 </p>
 
 
-## We have provided font sizes that can be seen even from small screens.
+## We included default font sizes that can be seen even from small screens.
 
 <p align="center">
 <img src="img/header.png"
@@ -53,7 +53,7 @@ Here are some captions of how your presentation would looks like:
 </p>
 
 
-## You can use the chapter slide to separate different sections in your presentation
+## You can use the chapter slide to separate different sections of your presentation
 
 
 <p align="center">
@@ -64,7 +64,7 @@ Here are some captions of how your presentation would looks like:
 </p>
 
 
-## Also, you can include some code and results:
+## Also, you can show some code and results:
 
 <p align="center">
 <img src="img/plots.png"
@@ -84,8 +84,18 @@ Here are some captions of how your presentation would looks like:
 </p>
 
 
-## Please, include Alternative text in your figures and make them screen-reader friendly.   
+## Please, add Alternative text to your figures and make them screen-reader friendly.   
 
+Knitr (version >= 1.31) have a new feature to add alt-text to your figures. Just add fig.alt = "Your alt-text” in the chunk options.
+
+```
+{r, echo = FALSE, fig-show = “hold”, out.width = “40%“,fig.alt = “Two ggplot panels, comparing deafult ggplot2 
+colors versus the ggplot2 result using viridis color palette, Each panel shows three superposed color-filled 
+histograms. The default scale uses the colors salmon, light green and light blue, but viridis scale uses purple,
+aquamarine and yellow, which gives a better contrast.“}
+fig
+fig2
+```
 
 If this is your first time using alternative text, this [article](https://www.techsmith.com/blog/how-to-create-alternative-text-for-images-for-accessibility-and-seo/) could be helpful. Also, if you want to ensure that your alt-text is clear, you can activate a screen reader like [VoiceOver](https://webaim.org/articles/voiceover/), [NVDA](https://webaim.org/articles/nvda/) or [JAWS](https://webaim.org/articles/jaws/) and listen how your alternative text will sound. 
 
