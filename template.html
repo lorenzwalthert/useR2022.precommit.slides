@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Your title</title>
+    <title>Better commits with pre-commit</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Your name" />
-    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
+    <meta name="author" content="Lorenz Walthert" />
+    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/useR.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/useR-fonts.css" rel="stylesheet" />
   </head>
@@ -12,81 +12,107 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Your title
-### Your name
-
----
-
-
-class: chapter-slide
-
-# Chapter
-
----
-
-## Header 2
-
-Some text
-
-### Header 3
-
-
-```r
-# some code
-seq(1:5)
-```
-
-```
-## [1] 1 2 3 4 5
-```
-
----
-
-## Creating some plots
-
-We will use the [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) package to create some colorblind-friendly plots. 
-Let's see how the graph looks like with various color-vision-deficiency [simulations](https://github.com/clauswilke/colorblindr):
-
-
-
-
-```r
-fig &lt;- ggplot(iris, aes(Sepal.Length, fill = Species)) + 
-  geom_density(alpha = 0.7) + theme_useR() + 
-  theme(legend.position = c(0.8, 0.9),legend.margin = margin(),
-        legend.title = element_blank()) 
-fig_grid &lt;- cvd_grid(fig)
-```
-
-.center[
-&lt;img src="template_files/figure-html/unnamed-chunk-4-1.png" width="40%" /&gt;&lt;img src="template_files/figure-html/unnamed-chunk-4-2.png" width="40%" /&gt;
+.title[
+# Better commits with pre-commit
+]
+.author[
+### Lorenz Walthert
 ]
 
 ---
 
-Let's use a color scale that works better
+
+## Trivial problems cost a lot of time
 
 
+- fixing code style issues.
 
-```r
-fig2 &lt;- ggplot(iris, aes(Sepal.Length, fill = Species)) + 
-  geom_density(alpha = 0.8) + theme_useR() + 
-  theme(legend.position = c(0.8, 0.9))+ 
-  scale_fill_viridis(discrete = TRUE)
-fig_grid2 &lt;- cvd_grid(fig2)
-```
+- rendering `README.Rmd`.
 
+- run `roxygen2::roxygenize()` to generate `.Rd` docs.
 
-&lt;img src="template_files/figure-html/unnamed-chunk-6-1.png" width="48%" /&gt;&lt;img src="template_files/figure-html/unnamed-chunk-6-2.png" width="48%" /&gt;
+- declare missing dependency in `DESCRIPTION`.
+
+- ...
 
 ---
 
-## Do not forget to include alt-text to your figures!
+## How to deal with trivial problems
 
-Knitr (version &gt;= 1.31) have a new feature to add alt-text to your figures. Just add fig.alt = "Your alt-text” in the chunk options.
 
-&lt;img src="template_files/figure-html/unnamed-chunk-7-1.png" title="Two ggplot panels, comparing default ggplot2 colors versus the ggplot2 result using viridis color palette. Each panel shows three superposed color-filled histograms. The default scale uses the colors salmon, light green and light blue, but viridis scale uses purple, aquamarine and yellow, which gives a better contrast." alt="Two ggplot panels, comparing default ggplot2 colors versus the ggplot2 result using viridis color palette. Each panel shows three superposed color-filled histograms. The default scale uses the colors salmon, light green and light blue, but viridis scale uses purple, aquamarine and yellow, which gives a better contrast." width="40%" /&gt;&lt;img src="template_files/figure-html/unnamed-chunk-7-2.png" title="Two ggplot panels, comparing default ggplot2 colors versus the ggplot2 result using viridis color palette. Each panel shows three superposed color-filled histograms. The default scale uses the colors salmon, light green and light blue, but viridis scale uses purple, aquamarine and yellow, which gives a better contrast." alt="Two ggplot panels, comparing default ggplot2 colors versus the ggplot2 result using viridis color palette. Each panel shows three superposed color-filled histograms. The default scale uses the colors salmon, light green and light blue, but viridis scale uses purple, aquamarine and yellow, which gives a better contrast." width="40%" /&gt;
+.center[
+&lt;img src="img/meme.jpeg" width="60%" /&gt;
+]
 
+---
+
+## So what is pre-commit?
+
+- unit tests for your commits, invoked through `$ git commit`.
+- Commit is aborted if:
+    - if a hook finds a problem.
+    - if a hook changes a file.
+- CLI program (written in Python)
+- supports hooks in many languages
+
+---
+
+## And what is {precommit}?
+
+R package:
+
+* {usethis}-like functionality for setup of pre-commit.
+
+* implementation of R hooks.
+  
+---
+
+
+## What can pre-commit do for you?
+
+* Save you time 
+
+* Better commits = better code quality
+
+.center[
+&lt;img src="img/oops.png" width="60%" /&gt;
+]
+
+
+---
+
+## Why does pre-commit stand out?
+
+- Focus on your code.
+
+- A declarative configuration file for routine checks.
+
+- Locally and remotely. Or just one of the two.
+
+- Dependency isolation.
+
+- No git history convolution.
+
+- The power of the crowd.
+
+- Extensible.
+
+- Standing on the shoulders of giants.
+
+- Independent.
+
+
+---
+
+## Demo
+
+* Set-up precommit.
+
+* Show hooks in action.
+
+* continuous integration.
+
+* Write your own hooks.
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
@@ -131,6 +157,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
