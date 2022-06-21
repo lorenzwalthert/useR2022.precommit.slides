@@ -10,13 +10,13 @@ output:
 ## Trivial problems cost a lot of time
 
 
-- fixing code style issues.
+- Fixing code style issues.
 
-- rendering `README.Rmd`.
+- Rendering `README.Rmd`.
 
-- run `roxygen2::roxygenize()` to generate `.Rd` docs.
+- Run `roxygen2::roxygenize()` to generate `.Rd` docs.
 
-- declare missing dependency in `DESCRIPTION`.
+- Declare missing dependency in `DESCRIPTION`.
 
 - ...
 
@@ -35,12 +35,12 @@ knitr::include_graphics("img/meme.jpeg")
 
 ## So what is pre-commit?
 
-- unit tests for your commits, invoked through `$ git commit`.
+- Unit tests for your commits, invoked through `$ git commit`.
 - Commit is aborted if:
-    - if a hook finds a problem.
-    - if a hook changes a file.
-- CLI program (written in Python)
-- supports hooks in many languages
+    - a hook finds a problem.
+    - a hook changes a file.
+- CLI program (written in Python).
+- Supports hooks in many languages.
 
 ---
 
@@ -50,7 +50,7 @@ R package:
 
 * {usethis}-like functionality for setup of pre-commit.
 
-* implementation of R hooks.
+* Implementation of R hooks.
   
 ---
 
@@ -102,4 +102,20 @@ knitr::include_graphics("img/oops.png")
 * continuous integration.
 
 * Write your own hooks.
+
+---
+
+### Closing
+
+Learnings 
+* What pre-commit is.
+* How pre-commit works.
+* Local and CI use case.
+  
+</br>
+.center[
+```{r, out.width="50%", echo=FALSE}
+knitr::include_graphics("img/gh-sponosor.png")
+```
+] 
 
